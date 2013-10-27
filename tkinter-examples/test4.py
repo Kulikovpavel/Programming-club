@@ -18,5 +18,5 @@ w = Canvas(master,
 w.pack()
 
 checkered(w,10)
-
+w.create_line(0,0,10,10,20,20,30,30,30,60,30, 80,60,80, width=10, fill='red')
 mainloop()

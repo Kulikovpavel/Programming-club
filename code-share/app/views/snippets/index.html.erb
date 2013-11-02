@@ -1,0 +1,19 @@
+<h1>Listing posts</h1>
+ 
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Text</th>
+  </tr>
+ 
+  <% @snippets.each do |snippet| %>
+    <tr>
+      <td><%= snippet.title %></td>
+      <td><%= snippet.author %></td>
+      <td><%= snippet.text %></td>
+      <td><%= link_to "Удалить", snippet_path(snippet),
+                    method: :delete %></td>
+    </tr>
+  <% end %>
+</table>

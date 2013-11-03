@@ -1,7 +1,8 @@
 from tkinter import *
 from math import *
 
-def get_direction(x1, y1, x2, y2):
+
+def get_direction(x1, y1, x2, y2):  # calculate dx and dy for movement toward point
 	deltax = x2 - x1
 	deltay = y2 - y1
 	theta = atan2(deltay, deltax)
@@ -28,7 +29,7 @@ def loop():
 		
 	w.move(image, dx, dy)
 	w.move(text, 1, 1)
-	w.after(35,loop)
+	w.after(1,loop)
 	
 w.after(30, loop)
 

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang='ru'>
 <head>
   <title>CodeShare</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 </head>
 <body>
-
-<%= yield %>
-
+<div class="container">
+	<%= yield %>
+</div>
 </body>
 </html>

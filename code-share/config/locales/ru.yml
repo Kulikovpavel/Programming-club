@@ -1,0 +1,10 @@
+ru:
+  helpers:
+    label:
+      snippet:
+        title: Название
+        author: Автор
+        text: Код
+        created_at: Создан
+        updated_at: Изменен
+      # will translate User attribute "login" as "Handle" 

@@ -16,7 +16,7 @@ class SnippetsController < ApplicationController
 	end
 
 	def index
-  		@snippets = Snippet.all
+  		@snippets = Snippet.all.reverse
 	end
 
 	def destroy

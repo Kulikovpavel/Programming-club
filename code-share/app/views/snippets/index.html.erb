@@ -1,19 +1,27 @@
-<h1>Listing posts</h1>
- 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Text</th>
-  </tr>
- 
-  <% @snippets.each do |snippet| %>
-    <tr>
-      <td><%= snippet.title %></td>
-      <td><%= snippet.author %></td>
-      <td><%= snippet.text %></td>
-      <td><%= link_to "Удалить", snippet_path(snippet),
-                    method: :delete %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="row">
+  <div class="col-md-6"><%= render "new" %></div>
+  <div class="col-md-6">
+    <h1>Сохраненные сниппеты</h1>    
+    <table class="table table-striped">
+      <tr>
+        <th>Открыть </th>
+        <th>Название </th>
+        <th>Автор </th>
+        <th>Создан</th>
+      </tr>
+     
+      <% @snippets.each do |snippet| %>
+        <tr>
+          <td><%= link_to snippet.id, snippet_path(snippet), :class => "btn btn-primary" %></td>
+          <td><%= snippet.title %></td>
+          <td><%= snippet.author %></td>
+          <td><%= snippet.updated_at %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+
+
+

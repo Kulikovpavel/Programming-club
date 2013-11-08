@@ -1,14 +1,27 @@
-<p>
-  <strong>Title:</strong>
-  <%= @snippet.title %>
-</p>
+<div class="row">
+  <p><%= link_to "На главную страницу", snippets_path, :class => "btn btn-primary" %></p>
+<div class="row">
+  
+	<p>
+	  <strong>ID:</strong>
+	  <%= @snippet.id %>
+	</p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @snippet.author %>
-</p>
- 
-<p>
-  <strong>Text:</strong>
-  <%= @snippet.text %>
-</p>
+	<p>
+	  <strong>Название:</strong>
+	  <%= @snippet.title %>
+	</p>
+
+	<p>
+	  <strong>Автор:</strong>
+	  <%= @snippet.author %>
+	</p>
+	 
+	<p>
+	  <strong>Код:</strong>
+	  <pre class="prettyprint linenums">
+<%= @snippet.text %>
+	  </pre>
+	</p>
+
+</div>

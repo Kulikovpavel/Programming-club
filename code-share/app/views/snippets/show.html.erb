@@ -1,7 +1,5 @@
 <div class="row">
-  <p><%= link_to "На главную страницу", snippets_path, :class => "btn btn-primary" %></p>
-<div class="row">
-  
+  	<p><%= link_to "На главную страницу", snippets_path, :class => "btn btn-primary" %></p>
 	<p>
 	  <strong>ID:</strong>
 	  <%= @snippet.id %>
@@ -22,6 +20,10 @@
 	  <pre class="prettyprint linenums">
 <%= @snippet.text %>
 	  </pre>
+	</p>
+
+	<p class='text-right'>
+	  <%= link_to "Удалить", snippet_path(@snippet), method: :delete, :class => "btn btn-warning btn-xs" %>
 	</p>
 
 </div>

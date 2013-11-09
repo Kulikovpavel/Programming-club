@@ -1,4 +1,5 @@
 CodeShare::Application.routes.draw do
+  get "static_pages/links"
   resources :snippets, :path => '/'
   # root 'snippets#index'
   # The priority is based upon order of creation: first created -> highest priority.

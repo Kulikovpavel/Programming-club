@@ -28,8 +28,10 @@ def loop():
 	dx, dy = get_direction(xi, yi, x, y)
 		
 	w.move(image, dx, dy)
+	w.update_idletasks()
 	w.move(text, 1, 1)
-	w.after(1,loop)
+	w.update_idletasks()
+	w.after(33,loop)
 	
 w.after(30, loop)
 

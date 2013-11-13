@@ -1,4 +1,6 @@
 CodeShare::Application.routes.draw do
+  resources :links
+
   get "static_pages/links"
   resources :snippets, :path => '/'
   # root 'snippets#index'

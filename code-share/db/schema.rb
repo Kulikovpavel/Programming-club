@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131102190929) do
+ActiveRecord::Schema.define(version: 20131113193300) do
+
+  create_table "links", force: true do |t|
+    t.string   "title"
+    t.string   "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "snippets", force: true do |t|
     t.string   "title"

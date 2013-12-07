@@ -1,6 +1,8 @@
 <div class="row">
-  <div class="col-md-5"><%= render "new" %></div>
+  <div class="col-md-3"><%= render "new" %></div>
   <div class="col-md-5">   
+    <h1>Совместный редактор кода</h1>
+    <a href="/codeedit" class="btn btn-primary">Перейти к редактированию и просмотру кода</a>
     <h1>Сохраненные сниппеты</h1>    
     <table class="table table-striped">
       <tr>
@@ -20,7 +22,7 @@
       <% end %>
     </table>
   </div>
-  <div class="col-md-2">
+  <div class="col-md-4">
     <h1>Полезные ссылки</h1>
     <%= @links.map{|link| link_to link.title, link.link, :class => "btn btn-primary"}.join(' ').html_safe %>
     <!-- <a href="http://vk.com/programming_club_istra" class='btn btn-primary'>Группа ВКонтакте</a> -->

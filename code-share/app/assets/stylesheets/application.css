@@ -13,3 +13,8 @@
  *= require bootstrap
  *= require prettify
  */
+
+textarea
+{
+	width: 100%;
+}

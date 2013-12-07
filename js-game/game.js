@@ -40,7 +40,7 @@ player_image.src = 'images/bunny.png';
 
 // Game state
 var player = {
-	speed: 500,  // скорость перемещения
+    speed: 500,  // скорость перемещения
     pos: [canvas.width/2, canvas.height-50],  // позиция игрока на экране
     half_size: [26/2, 37/2],  // полуразмеры игрока, чтобы отрисовывать в правильном месте
     sprite: player_image
@@ -67,5 +67,4 @@ function render() {
 function update_player(dt) {
 	if (isLeftPressed) {player.pos[0] -= dt*player.speed};
 	if (isRightPressed) {player.pos[0] += dt*player.speed};
-
 }

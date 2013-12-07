@@ -24,7 +24,7 @@
   </div>
   <div class="col-md-4">
     <h1>Полезные ссылки</h1>
-    <%= @links.map{|link| link_to link.title, link.link, :class => "btn btn-primary"}.join(' ').html_safe %>
+    <%= @links.map{|link| link_to link.title, link.link, :class => "btn btn-primary"}.join('<br/>').html_safe  %>
     <!-- <a href="http://vk.com/programming_club_istra" class='btn btn-primary'>Группа ВКонтакте</a> -->
     <!-- <a href="https://github.com/Kulikovpavel/Programming-club" class='btn btn-primary'>Примеры использования</a> -->
   </div>

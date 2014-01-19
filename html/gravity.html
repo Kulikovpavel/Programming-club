@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+	<body>
+		<canvas id="canvas" width="800" height="800">
+		<script>
+			function massChange(newMass) {
+				sunMass = newMass;
+			};
+			
+			var canvas = document.getElementById("canvas");
+			var context = canvas.getContext('2d');
+			
+			function projection(x) {
+				var centerX = canvas.width / 2;
+				var centerY = canvas.height / 2;
+				var scaleCoeff = centerX * 2/3 / 149600000;
+				
+				return x * scaleCoeff + centerX;
+			}
+			
+			var sunMass = 1.989E30;  // kg
+			var G = 6.67384E-20;  // gravitational constant			
+			var sun = {
+				x: 0,
+				y: 0,
+				radius: 10,
+				color: 'yellow'
+			};
+			
+			var earth = {
+				x: 149600000,  // km
+				y: 0,
+				v_x: 0,
+				v_y: -29.783,  // km/s
+				radius: 5,
+				color: "#248A3A"
+			};
+			
+			function drawPlanet(planet) {
+				context.beginPath();
+				context.arc(projection(planet.x), projection(planet.y), planet.radius, 0, 2 * Math.PI, false);
+				context.fillStyle = planet.color;
+				context.fill();
+				context.lineWidth = 1;
+				context.strokeStyle = '#003300';
+				context.stroke();			
+			}
+			
+			function mainLoop() {
+				updatePlanet(earth);
+				render();
+				requestAnimationFrame(mainLoop);  // цикл анимации
+				
+			}
+			
+			function render() {
+				context.fillStyle = '#06166F';
+				context.fillRect(0, 0, canvas.width, canvas.height);  //заполняем холст фоном
+				drawPlanet(sun);
+				drawPlanet(earth);		
+			}
+			
+			function updatePlanet(planet) {
+				var dt = 70000;
+				
+				var radiusSquare = Math.pow(planet.x, 2) + Math.pow(planet.y, 2);
+				var radius = Math.pow(radiusSquare, 0.5);
+				var acc = G * sunMass / radiusSquare;
+				
+				planet.v_x -= dt * acc * planet.x / radius;  // * cos(angle)
+				planet.v_y -= dt * acc * planet.y / radius;  // * cos(angle)
+				//console.log(planet.v_x, planet.v_y);
+				
+				
+				planet.x += dt * planet.v_x;
+				planet.y += dt * planet.v_y;
+				
+				
+			}
+			
+			mainLoop();
+			
+		</script>
+	</body>
+</html>

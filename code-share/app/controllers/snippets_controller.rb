@@ -16,7 +16,7 @@ class SnippetsController < ApplicationController
 	end
 
 	def index
-  		@snippets = Snippet.all.reverse
+  		@snippets = Snippet.order(created_at: :desc)
   		@links = Link.all
 	end
 

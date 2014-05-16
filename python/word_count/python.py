@@ -1,8 +1,8 @@
 with open('book1.txt', 'r', encoding='utf-8') as file:
-	list = file.readlines()
+	lines = file.readlines()
 	
 	dict = {}
-	for elem in list:
+	for elem in lines:
 		words = elem.lower().replace(".", "").replace(",", "").replace(";", "").replace(":", "").replace("-", "").split(" ")
 		for word in words:
 			#if word == '\n': continue

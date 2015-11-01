@@ -36,14 +36,20 @@ DECLARE
 score_val numeric;
 count_val int;
 accepted_val boolean;
-update_result int;
 BEGIN
+
 IF _score > 7 OR _score < 1 THEN RAISE EXCEPTION 'Message text'; END IF;
-UPDATE PaperReviewing SET score=$1 WHERE paper_id=$1 AND reviewer_id=$2 RETURNING 1 into update_result;
-IF update_result = 0 THEN RAISE EXCEPTION 'Message text'; END IF;
+
+UPDATE PaperReviewing SET score=$3 WHERE paper_id=$1 AND reviewer_id=$2;
+IF NOT FOUND THEN RAISE EXCEPTION 'Message text'; END IF;
+
 SELECT AVG(score) into score_val FROM PaperReviewing WHERE paper_id=$1;
 SELECT COUNT(*) into count_val FROM PaperReviewing WHERE paper_id=$1;
-accepted_val = (count_val >= 3 AND score_val > 4);
-UPDATE Paper SET accepted=accepted_val WHERE id=$1;
+
+IF count_val >= 3 THEN
+  accepted_val = (score_val > 4);
+  UPDATE Paper SET accepted=accepted_val WHERE id=$1;
+END IF;
+
 END;
 $$ LANGUAGE plpgsql;

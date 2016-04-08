@@ -1,13 +1,16 @@
 from lxml import html
 import requests
 import codecs
+import json
+from lxml import objectify
 
 
 home = 'http://gatn.mosreg.ru'
 links = []
 pics = []
 items = []
-for i in range(1, 8):
+texts = []
+for i in range(7, 0, -1):
 
 	page = requests.get(home + '/multimedia/novosti/novosti/?PAGEN_1=%s'%i)
 	tree = html.fromstring(page.content)
@@ -21,9 +24,27 @@ for i in range(1, 8):
 	items.extend(items_current)
 
 
-zipped = zip(links, pics, items)
 
-with codecs.open('out.txt','w',encoding='utf8') as f:
-	for e in zipped:
-		f.write('<p><a href="%s"><img src="%s"/><span style="margin-left: 5px;">%s</span></a></p>' % e)
-		f.write('\n')
+	for elem in links_current:
+		page = requests.get(home + elem)
+		tree = html.fromstring(page.content)
+		text = tree.xpath('//div[@class="text"]/p')
+		p_array = [html.tostring(elem, encoding='unicode', pretty_print=True) for elem in text]
+		p_string = "".join(p_array)
+		texts.append(p_string)
+		
+
+
+	print(i)
+
+
+zipped = list(zip(links, pics, items, texts))
+
+with codecs.open('out1.txt','w',encoding='utf8') as f:
+	f.write(json.dumps(zipped))
+
+	# for e in zipped:
+	# 	string = '<p><a href="%s"><img src="%s"/><span style="margin-left: 5px;">%s</span></a></p><div>%s</div>' % e
+
+	# 	f.write(json.dumps([string]))
+	# 	f.write('\n')

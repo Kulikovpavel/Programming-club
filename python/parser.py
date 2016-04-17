@@ -10,7 +10,7 @@ links = []
 pics = []
 items = []
 texts = []
-for i in range(7, 0, -1):
+for i in range(5, 0, -1):
 
 	page = requests.get(home + '/multimedia/novosti/novosti/?PAGEN_1=%s'%i)
 	tree = html.fromstring(page.content)

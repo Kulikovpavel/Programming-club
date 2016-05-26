@@ -31,7 +31,7 @@ for i in range(5, 0, -1):
 		text = tree.xpath('//div[@class="text"]/p')
 		p_array = [html.tostring(elem, encoding='unicode', pretty_print=True) for elem in text]
 		p_string = "".join(p_array)
-		texts.append(p_string)
+		texts.append(p_string + "<p>Добавлено 27.04.2016</p>")
 		
 
 

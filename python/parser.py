@@ -3,6 +3,7 @@ import requests
 import codecs
 import json
 from lxml import objectify
+from datetime import datetime
 
 
 home = 'http://gatn.mosreg.ru'
@@ -12,27 +13,28 @@ items = []
 texts = []
 for i in range(5, 0, -1):
 
-	page = requests.get(home + '/multimedia/novosti/novosti/?PAGEN_1=%s'%i)
+	page = requests.get(home + '/sobytiya/novosti_ministerstva/?page=%s'%i)
 	tree = html.fromstring(page.content)
 
-	links_current = tree.xpath('//div[@class="news-item"]/a[@class="link"]/@href')
-	pics_current = tree.xpath('//div[@class="news-item"]/a[@class="link"]/div[@class="pic"]/img/@src') 
-	items_current = tree.xpath('//div[@class="news-item"]/a[@class="link"]/div[@class="title"]/text()')
+	links_current = tree.xpath('//div[@class="event__content"]/h3[@class="event__title"]/a/@href')
+	pics_current = tree.xpath('//div[@class="event__image-wrap"]/a[@class="event__image-link"]/img/@src')
+	items_current = tree.xpath('//div[@class="event__content"]/h3/a/text()')
 
 	links.extend(home + s.strip(' \t\n\r') for s in links_current)
 	pics.extend(home + s.strip(' \t\n\r') for s in pics_current)
 	items.extend(items_current)
 
-
+	# print(items_current)
 
 	for elem in links_current:
 		page = requests.get(home + elem)
 		tree = html.fromstring(page.content)
-		text = tree.xpath('//div[@class="text"]/p')
+		text = tree.xpath('//div[@class="article__inner  typical"]/p')
 		p_array = [html.tostring(elem, encoding='unicode', pretty_print=True) for elem in text]
 		p_string = "".join(p_array)
-		texts.append(p_string + "<p>Добавлено 27.04.2016</p>")
-		
+		date = datetime.now().strftime('%d.%m.%Y')
+		texts.append(p_string + "<p>Добавлено %s</p>" % date)
+
 
 
 	print(i)

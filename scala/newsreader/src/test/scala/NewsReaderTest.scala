@@ -11,18 +11,12 @@ class NewsReaderTest extends FunSuite {
   val correct_answer = """<strong>Obama</strong> visited <strong>Facebook</strong> headquarters: <a href="http://bit.ly/xyz">http://bit.ly/xyz</a> @<a href="http://twitter.com/elversatile">elversatile</a>"""
 
   test("NewsReader") {
-    object MockNewsReader extends NewsReader {
-      def getData = {
-        (input_text,
-          List(ConceptWithPosition(14, 22, Entity("Facebook")),
+    val concepts = List(ConceptWithPosition(14, 22, Entity("Facebook")),
                ConceptWithPosition(0, 5, Entity("Obama")),
                ConceptWithPosition(55, 67, TwitterUserLink("@elversatile")),
-               ConceptWithPosition(37, 54, Link("http://bit.ly/xyz"))))
+               ConceptWithPosition(37, 54, Link("http://bit.ly/xyz")))
 
-      }
-    }
-
-    assert(MockNewsReader.convert == correct_answer)
+    assert(NewsReader(input_text, concepts) == correct_answer)
   }
 
   test("testConvert") {

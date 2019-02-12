@@ -1,7 +1,3 @@
-# Programming-club
-Istra, N3, Lermontova
-
-
-Collection of materials for Programming club
+# My collection of different programming projects for coding clubs
 
 http://vk.com/pc_istra
